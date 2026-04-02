@@ -1,0 +1,24 @@
+# 環境變數（絕對不能上傳）
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+frontend/dist/
+
+# 本地資料庫
+backend/data/*.db
+
+# macOS
+.DS_Store
+
+# logs
+*.log
