@@ -1,10 +1,15 @@
 """Playwright fallback scraper for JavaScript-rendered pages."""
-import re
-from playwright.async_api import async_playwright
+try:
+    from playwright.async_api import async_playwright
+    _PLAYWRIGHT_AVAILABLE = True
+except ImportError:
+    _PLAYWRIGHT_AVAILABLE = False
 
 
 async def scrape_with_playwright(url: str) -> dict:
     """Use Playwright headless browser to scrape JS-rendered pages."""
+    if not _PLAYWRIGHT_AVAILABLE:
+        return {"name": "", "description": "", "price": "", "images": []}
     try:
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)

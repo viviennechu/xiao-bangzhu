@@ -67,7 +67,7 @@ def select_style_examples(
         tag_lower = category_filter.lower()
         candidate = [
             p for p in posts
-            if tag_lower in (p.get("title", "") + " ".join(p.get("tags", []))
+            if tag_lower in (p.get("title", "") + " ".join(str(t) for t in p.get("tags", []))
                              + " ".join(str(c) for c in p.get("categories", []))).lower()
         ]
         if candidate:

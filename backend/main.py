@@ -20,6 +20,7 @@ from search.social import search_social_references, SearchUnavailableError
 from knowledge.ami_index import load_index as load_ami_index
 from search.competitor_price import lookup_competitor_price, compare_prices
 from ai.market_analysis import analyze_market
+from ai.translator import translate
 
 
 @asynccontextmanager
@@ -278,5 +279,27 @@ async def generate_all_endpoint(payload: GeneratePayload):
         price_result=payload.price_result,
         market_analysis=payload.market_analysis,
         competitor_comparison=payload.competitor_comparison,
+    )
+    return result
+
+
+# ── 大V翻譯機 ──────────────────────────────────────────────────────────────────
+
+class TranslatePayload(BaseModel):
+    draft: str
+    persona: str        # "bigv" | "wa"
+    output_format: str  # "blog" | "ig_stories" | "group_fire"
+
+
+@app.post("/api/translate")
+async def translate_endpoint(payload: TranslatePayload):
+    if payload.persona not in ("bigv", "wa"):
+        raise HTTPException(status_code=422, detail="persona 必須是 bigv 或 wa")
+    if payload.output_format not in ("blog", "ig_stories", "group_fire"):
+        raise HTTPException(status_code=422, detail="output_format 必須是 blog | ig_stories | group_fire")
+    result = await translate(
+        draft=payload.draft,
+        persona=payload.persona,
+        output_format=payload.output_format,
     )
     return result

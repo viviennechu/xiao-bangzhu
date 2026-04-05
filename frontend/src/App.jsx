@@ -7,6 +7,7 @@ import SocialReferences from './components/SocialReferences'
 import PriceCompare from './components/PriceCompare'
 import MarketAnalysis from './components/MarketAnalysis'
 import MultiFormatOutput from './components/MultiFormatOutput'
+import Translator from './components/Translator'
 
 export default function App() {
   const [product, setProduct] = useState(null)
@@ -26,6 +27,13 @@ export default function App() {
           <h1 className="text-2xl font-bold text-gray-900">寫文小幫手</h1>
           <p className="text-sm text-gray-500 mt-1">輸入商品，自動產出 Blog 長文、社群短文、Reels 腳本</p>
         </div>
+
+        {/* 大V 翻譯機 */}
+        <div className="mb-8">
+          <Translator />
+        </div>
+
+        <hr className="border-gray-200 mb-8" />
 
         {/* Step 1: Product URL */}
         <div className="mb-4">

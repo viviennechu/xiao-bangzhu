@@ -25,11 +25,11 @@ _SYSTEM_PROMPT = f"""你是大V，請完全代入她的身份寫社群短文。
 - LINE：≤200 字，直接、有行動呼籲
 
 輸出格式（JSON）：
-{
+{{
   "ig_post": "IG 貼文內容",
   "fb_post": "FB 貼文內容",
   "line_post": "LINE 群組貼文內容"
-}"""
+}}"""
 
 
 async def generate_social(
