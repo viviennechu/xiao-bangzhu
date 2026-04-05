@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const API = ''
+const API = import.meta.env.VITE_API_BASE ?? ''
 
 const TABS = [
   { key: 'blog', label: 'Blog 長文' },

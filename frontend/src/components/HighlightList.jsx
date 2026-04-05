@@ -20,7 +20,7 @@ import {
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
-const API = ''
+const API = import.meta.env.VITE_API_BASE ?? ''
 
 // ── Sortable card ─────────────────────────────────────────────────────────────
 

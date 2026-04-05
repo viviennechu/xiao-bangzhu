@@ -4,7 +4,7 @@
  */
 import { useState } from 'react'
 
-const API = ''
+const API = import.meta.env.VITE_API_BASE ?? ''
 
 export default function PriceCompare({ retailPrice, onResult }) {
   const [mode, setMode] = useState('manual') // 'manual' | 'url'

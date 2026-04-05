@@ -283,6 +283,50 @@ async def generate_all_endpoint(payload: GeneratePayload):
     return result
 
 
+# ── 品名搜尋 ───────────────────────────────────────────────────────────────────
+
+@app.get("/api/search-product")
+async def search_product_endpoint(name: str = Query(...)):
+    """用品名 Google 搜尋商品，回傳結構化商品資料供後續 AI 分析用。"""
+    from googlesearch import search as gsearch
+    from scraper.generic import scrape_generic
+
+    try:
+        queries = [f"{name} 商品介紹", f"{name} site:momo.com.tw OR site:pchome.com.tw"]
+        urls = []
+        for q in queries:
+            try:
+                for url in gsearch(q, num_results=3, lang="zh-TW"):
+                    if url not in urls:
+                        urls.append(url)
+                    if len(urls) >= 4:
+                        break
+            except Exception:
+                pass
+            if len(urls) >= 4:
+                break
+
+        product = {"name": name, "description": "", "price": "", "images": []}
+
+        for url in urls:
+            try:
+                result = await asyncio.to_thread(scrape_generic, url)
+                if result.get("description"):
+                    product["description"] = result["description"]
+                if result.get("price"):
+                    product["price"] = result["price"]
+                if result.get("images"):
+                    product["images"] = result["images"][:3]
+                if product["description"]:
+                    break
+            except Exception:
+                continue
+
+        return product
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # ── 大V翻譯機 ──────────────────────────────────────────────────────────────────
 
 class TranslatePayload(BaseModel):

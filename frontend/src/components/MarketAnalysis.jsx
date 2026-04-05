@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const API = ''
+const API = import.meta.env.VITE_API_BASE ?? ''
 
 const TREND_LABEL = {
   rising: { text: '上升趨勢', color: 'text-green-600', bg: 'bg-green-50' },

@@ -4,7 +4,7 @@
  */
 import { useState } from 'react'
 
-const API = ''
+const API = import.meta.env.VITE_API_BASE ?? ''
 
 function ReferenceCard({ title, url }) {
   return (
