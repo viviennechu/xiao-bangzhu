@@ -176,7 +176,7 @@ export default function Translator() {
                 : 'border-gray-200 text-gray-500 hover:border-gray-300'
             }`}
           >
-            WA 宇宸
+            小幫手一號
           </button>
         </div>
       </div>
