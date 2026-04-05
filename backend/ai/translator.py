@@ -101,7 +101,7 @@ async def translate(
 
     message = await asyncio.to_thread(
         client.messages.create,
-        model="claude-3-5-sonnet-20241022",
+        model="claude-sonnet-4-6",
         max_tokens=3000,
         system=system,
         messages=[{"role": "user", "content": user_content}],
