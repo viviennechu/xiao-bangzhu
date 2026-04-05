@@ -116,7 +116,8 @@ export default function Translator() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch('/api/translate', {
+      const base = import.meta.env.VITE_API_BASE ?? ''
+      const res = await fetch(`${base}/api/translate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ draft, persona, output_format: activeFormat }),
