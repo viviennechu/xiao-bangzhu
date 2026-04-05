@@ -157,10 +157,10 @@ export default function Translator() {
       {/* Persona selector */}
       <div>
         <label className="text-xs font-medium text-gray-500 mb-2 block">口吻</label>
-        <div className="flex gap-2">
+        <div className="grid grid-cols-2 gap-2">
           <button
             onClick={() => setPersona('bigv')}
-            className={`flex-1 py-2.5 rounded-xl text-sm font-medium border-2 transition-all ${
+            className={`py-2.5 rounded-xl text-sm font-medium border-2 transition-all ${
               persona === 'bigv'
                 ? 'border-rose-400 bg-rose-50 text-rose-700'
                 : 'border-gray-200 text-gray-500 hover:border-gray-300'
@@ -170,13 +170,33 @@ export default function Translator() {
           </button>
           <button
             onClick={() => setPersona('wa')}
-            className={`flex-1 py-2.5 rounded-xl text-sm font-medium border-2 transition-all ${
+            className={`py-2.5 rounded-xl text-sm font-medium border-2 transition-all ${
               persona === 'wa'
                 ? 'border-amber-400 bg-amber-50 text-amber-700'
                 : 'border-gray-200 text-gray-500 hover:border-gray-300'
             }`}
           >
             小幫手一號
+          </button>
+          <button
+            onClick={() => setPersona('sammy')}
+            className={`py-2.5 rounded-xl text-sm font-medium border-2 transition-all ${
+              persona === 'sammy'
+                ? 'border-sky-400 bg-sky-50 text-sky-700'
+                : 'border-gray-200 text-gray-500 hover:border-gray-300'
+            }`}
+          >
+            小幫手二號
+          </button>
+          <button
+            onClick={() => setPersona('zhenzen')}
+            className={`py-2.5 rounded-xl text-sm font-medium border-2 transition-all ${
+              persona === 'zhenzen'
+                ? 'border-emerald-400 bg-emerald-50 text-emerald-700'
+                : 'border-gray-200 text-gray-500 hover:border-gray-300'
+            }`}
+          >
+            小幫手三號
           </button>
         </div>
       </div>

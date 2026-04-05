@@ -293,8 +293,8 @@ class TranslatePayload(BaseModel):
 
 @app.post("/api/translate")
 async def translate_endpoint(payload: TranslatePayload):
-    if payload.persona not in ("bigv", "wa"):
-        raise HTTPException(status_code=422, detail="persona 必須是 bigv 或 wa")
+    if payload.persona not in ("bigv", "wa", "sammy", "zhenzen"):
+        raise HTTPException(status_code=422, detail="persona 必須是 bigv | wa | sammy | zhenzen")
     if payload.output_format not in ("blog", "ig_stories", "group_fire"):
         raise HTTPException(status_code=422, detail="output_format 必須是 blog | ig_stories | group_fire")
     result = await translate(
