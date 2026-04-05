@@ -297,9 +297,13 @@ async def translate_endpoint(payload: TranslatePayload):
         raise HTTPException(status_code=422, detail="persona 必須是 bigv | wa | sammy | zhenzen")
     if payload.output_format not in ("blog", "ig_stories", "group_fire"):
         raise HTTPException(status_code=422, detail="output_format 必須是 blog | ig_stories | group_fire")
-    result = await translate(
-        draft=payload.draft,
-        persona=payload.persona,
-        output_format=payload.output_format,
-    )
+    import traceback
+    try:
+        result = await translate(
+            draft=payload.draft,
+            persona=payload.persona,
+            output_format=payload.output_format,
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"{type(e).__name__}: {e}\n{traceback.format_exc()}")
     return result
