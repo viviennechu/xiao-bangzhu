@@ -66,6 +66,7 @@ export default function App() {
         <div className="mb-4">
           <PriceCompare
             retailPrice={product?.price || ''}
+            productName={product?.name || ''}
             onResult={setPriceResult}
           />
         </div>
