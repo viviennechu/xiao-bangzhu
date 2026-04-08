@@ -283,6 +283,16 @@ async def generate_all_endpoint(payload: GeneratePayload):
     return result
 
 
+# ── 多平台比價 ─────────────────────────────────────────────────────────────────
+
+@app.get("/api/platform-prices")
+async def platform_prices_endpoint(name: str = Query(...)):
+    """查詢各電商平台最低售價。"""
+    from search.platform_price import search_platform_prices
+    results = await asyncio.to_thread(search_platform_prices, name)
+    return {"platforms": results}
+
+
 # ── 品名搜尋 ───────────────────────────────────────────────────────────────────
 
 @app.get("/api/search-product")
